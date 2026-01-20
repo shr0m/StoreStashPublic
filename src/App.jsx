@@ -10,6 +10,7 @@ import {
   Container,
   Crown,
 } from "lucide-react";
+import { motion } from "framer-motion";
 import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast";
 
@@ -63,11 +64,18 @@ function Navbar() {
 
 function Card({ icon: Icon, title, children }) {
   return (
-    <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 p-6 bg-white dark:bg-zinc-900 transition-transform hover:-translate-y-1 hover:shadow-lg">
+    <motion.div
+      className="rounded-2xl border border-zinc-200 dark:border-zinc-800 p-6 bg-white dark:bg-zinc-900"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4 }}
+      whileHover={{ y: -6 }}
+    >
       <Icon className="h-8 w-8 mb-4" />
       <h3 className="font-semibold mb-2">{title}</h3>
       <p className="text-zinc-600 dark:text-zinc-400 text-sm">{children}</p>
-    </div>
+    </motion.div>
   );
 }
 
@@ -148,7 +156,6 @@ function EnquireForm() {
       setLoading(false);
     }
   };
-  
 
   return (
     <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-6">
@@ -176,10 +183,12 @@ function EnquireForm() {
         className="rounded-xl border border-zinc-300 dark:border-zinc-700 px-4 py-3 bg-white dark:bg-zinc-950 text-black dark:text-white placeholder:text-zinc-500 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500/50"
       />
 
-      <button
+      <motion.button
         type="submit"
         disabled={loading}
-        className={`mt-2 inline-flex justify-center items-center gap-2 px-6 py-3 rounded-xl bg-blue-900 dark:bg-blue-700 text-white font-medium transition-colors hover:bg-blue-800 dark:hover:bg-blue-600 ${
+        whileHover={!loading ? { scale: 1.03 } : {}}
+        whileTap={!loading ? { scale: 0.97 } : {}}
+        className={`mt-2 inline-flex justify-center items-center gap-2 px-6 py-3 rounded-xl bg-blue-900 dark:bg-blue-700 text-white font-medium ${
           loading ? "cursor-not-allowed opacity-60" : ""
         }`}
       >
@@ -188,7 +197,7 @@ function EnquireForm() {
         ) : (
           "Send Enquiry"
         )}
-      </button>
+      </motion.button>
     </form>
   );
 }
@@ -203,7 +212,12 @@ export default function StoreStashPortfolio() {
       <Toaster position="top-right" reverseOrder={false} />
 
       {/* Hero */}
-      <section className="px-6 py-24 text-center">
+      <motion.section
+        className="px-6 py-24 text-center"
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
         <h1 className="text-4xl md:text-5xl font-bold mb-6">StoreStash</h1>
         <p className="text-lg md:text-xl text-zinc-600 dark:text-zinc-400 max-w-3xl mx-auto mb-8">
           StoreStash is a secure inventory and stock assignment platform,
@@ -227,7 +241,7 @@ export default function StoreStashPortfolio() {
             Enquire
           </a>
         </div>
-      </section>
+      </motion.section>
 
       {/* Screenshot */}
       <section className="relative max-w-6xl mx-auto px-6 mb-24">
@@ -256,7 +270,14 @@ export default function StoreStashPortfolio() {
       </section>
 
       {/* Built For */}
-      <section className="max-w-6xl mx-auto px-6 mb-24">
+      <motion.section
+        id="features"
+        className="max-w-6xl mx-auto px-6 mb-24"
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
         <h2 className="text-2xl font-semibold mb-10 text-center">
           Built For RAF Air Cadets
         </h2>
@@ -277,10 +298,17 @@ export default function StoreStashPortfolio() {
             inspections and continuity.
           </Card>
         </div>
-      </section>
+      </motion.section>
 
       {/* Features */}
-      <section id="features" className="max-w-6xl mx-auto px-6 mb-24">
+      <motion.section
+        id="features"
+        className="max-w-6xl mx-auto px-6 mb-24"
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
         <h2 className="text-2xl font-semibold mb-10 text-center">
           Core Features
         </h2>
@@ -292,18 +320,25 @@ export default function StoreStashPortfolio() {
             </Card>
           ))}
         </div>
-      </section>
+      </motion.section>
 
       {/* Why StoreStash */}
-      <section className="max-w-4xl mx-auto px-6 mb-24 text-center">
+      <motion.section
+        className="max-w-4xl mx-auto px-6 mb-24 text-center"
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
         <h2 className="text-2xl font-semibold mb-6">Why StoreStash?</h2>
-        <ul className="space-y-3 text-zinc-600 dark:text-zinc-400">
+
+        <ul className="space-y-3 text-zinc-600 dark:text-zinc-400 inline-block text-left">
           <li>✔ Designed specifically around cadet unit workflows</li>
           <li>✔ No spreadsheets or fragmented systems</li>
           <li>✔ Clear ownership and accountability</li>
           <li>✔ Simple to use, easy to maintain</li>
         </ul>
-      </section>
+      </motion.section>
 
       {/* Security */}
       <section className="max-w-4xl mx-auto px-6 mb-24 text-center">
@@ -315,7 +350,14 @@ export default function StoreStashPortfolio() {
       </section>
 
       {/* Enquire */}
-      <section id="enquire" className="max-w-4xl mx-auto px-6 mb-24">
+      <motion.section
+        id="features"
+        className="max-w-4xl mx-auto px-6 mb-24"
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
         <h2 className="text-2xl font-semibold mb-4 text-center">
           Enquire About StoreStash
         </h2>
@@ -331,7 +373,7 @@ export default function StoreStashPortfolio() {
             <EnquireForm />
           </div>
         </div>
-      </section>
+      </motion.section>
 
       <footer className="border-t border-zinc-200 dark:border-zinc-800 py-8 text-center text-sm text-zinc-500">
         © {new Date().getFullYear()} StoreStash. All rights reserved.
