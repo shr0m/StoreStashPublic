@@ -351,7 +351,7 @@ export default function StoreStashPortfolio() {
 
       {/* Enquire */}
       <motion.section
-        id="features"
+        id="enquire"
         className="max-w-4xl mx-auto px-6 mb-24"
         initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -376,7 +376,7 @@ export default function StoreStashPortfolio() {
       </motion.section>
 
       <footer className="border-t border-zinc-200 dark:border-zinc-800 py-8 text-center text-sm text-zinc-500">
-        © {new Date().getFullYear()} StoreStash. All rights reserved.
+        © {new Date().getFullYear()} Jan Korzybski
       </footer>
     </div>
   );
